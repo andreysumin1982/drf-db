@@ -9,7 +9,4 @@
 <div align="center">
     <img src="syslog2.png" width="600px"</img> 
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 6cfab21 (Project drf-db)
