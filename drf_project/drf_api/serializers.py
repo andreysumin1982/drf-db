@@ -2,6 +2,7 @@ import random
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from datetime import datetime
+from .models import brand
 # ---------------------------------------- #
 
 # Определяем класс и его атрибуты
@@ -50,3 +51,8 @@ def encodeTest2(id, data):
     json = JSONRenderer().render(modeltest_sr.data)
     return json
 #
+#------------ Model Serialiser ---------------------------------------------#
+class Carsserialiser(serializers.ModelSerializer):
+    class Meta:
+        model = brand
+        fields = ('name')

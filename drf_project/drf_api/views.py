@@ -1,8 +1,11 @@
 import random
+from rest_framework import generics
 from django.shortcuts import render
 from django.http import HttpResponse
 from .serializers import encodeTest
 from .serializers import encodeTest2
+from .serializers import Carsserialiser
+from .models import brand
 # Create your views here.
 
 #
@@ -18,3 +21,7 @@ def testApi2(request):
     if (request.method == 'GET'):
         arrlist = [random.randint(1,1000) for j in range(random.randrange(1000))]
         return HttpResponse(encodeTest2(random.randrange(100), arrlist), content_type='application/json')
+#
+class CarsAPIView(generics.ListAPIView):
+    queryset = brand.objects.all()
+    serializer_class = Carsserialiser
