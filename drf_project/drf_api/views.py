@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .serializers import encodeTest
 from .serializers import encodeTest2
 from .serializers import Carsserialiser
-from .models import brand
+from .models import Brand
 # Create your views here.
 
 #
@@ -23,5 +23,5 @@ def testApi2(request):
         return HttpResponse(encodeTest2(random.randrange(100), arrlist), content_type='application/json')
 #
 class CarsAPIView(generics.ListAPIView):
-    queryset = brand.objects.all()
+    queryset = Brand.objects.all()
     serializer_class = Carsserialiser
