@@ -6,6 +6,8 @@ from .serializers import encodeTest
 from .serializers import encodeTest2
 from .serializers import Carsserialiser
 from .models import Brand
+from .serializers import encodeDataclass
+from .mydataset import main
 # Create your views here.
 
 #
@@ -25,3 +27,9 @@ def testApi2(request):
 class CarsAPIView(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = Carsserialiser
+#
+def datasetAPI(request):
+    if (request.method == 'GET'):
+        for key, value in main.dataset1().items():
+            #print(value)
+            return HttpResponse(encodeDataclass(key, value), content_type='application/json')

@@ -1,46 +1,12 @@
-# Импортируем модуль connectdb и класса Postgres
-from myclass.connectdb import Postgres
+# Импортируем модуль connectdb
 #
-
+#from myclasses.connectdb import Postgres
+from drf_api.myclass.connectdb import Postgres
 #
-# def fillTable():
-#     # Заполняем таблицы
-#     l = Postgres('localhost', 'language_db', 'test', 'test')
-#     file = File(pathfile)
-#     # Бежим по файлу
-#     for key, value in file.read().items():
-#         # заполняем таблицу language
-#         l.executeRequest(f"insert into language (name) values ('{key}');")
-#         # Узнаем последний (максимальный) id
-#         id = l.executeRequest(f"select max(id) from language;")
-#         # Конвертируем данные в словарь
-#         id_str = ''.join(l.convertResult(id).get(0))
-#         # Заполняем таблицу release
-#         l.executeRequest(f"insert into release (id_lang, year) values ({int(id_str)},'{int(value)}');")
-# #
-# def filltablejson():
-#     #
-#     cars_db = Postgres('localhost', 'cars_db', 'test', 'test')
-#     file = File(pathjson)
-#     result = file.readJson()
-#     #
-#     for key ,value in result['list'].items():
-#         print('*', key)
-#         # заполняем таблицу brand
-#         cars_db.executeRequest(f"insert into brand (name) values ('{key}');")
-#         # Узнаем последний (максимальный) id
-#         id = cars_db.executeRequest(f"select max(id) from brand;")
-#         # Конвертируем данные в словарь
-#         id_str = ''.join(cars_db.convertResult(id).get(0))
-#         for item in value:
-#             #print(' -',item)
-#             # Заполняем таблицу model
-#             cars_db.executeRequest(f"insert into model (id_brand, name) values ({int(id_str)},'{item}');")
-# #
 
 #
 def dataset1():
-    # Экземпляр класса
+    # Экземпляр класса Postgres
     cars_db = Postgres('localhost', 'cars_db', 'test', 'test')
     # Запрос
     request = cars_db.executeRequest('select brand.name, model.name from brand '
@@ -54,9 +20,8 @@ def dataset1():
             dictresult[value[0].strip()].append(value[1])
         else:
             dictresult[value[0].strip()].append(value[1])
-    print(dictresult)
+    #print(dictresult)
     return dictresult
-    #cars_db.deleteRows('brand')
 
 #
 

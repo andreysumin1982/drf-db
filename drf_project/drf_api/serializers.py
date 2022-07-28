@@ -51,8 +51,37 @@ def encodeTest2(id, data):
     json = JSONRenderer().render(modeltest_sr.data)
     return json
 #
-#------------ Model Serialiser ---------------------------------------------#
+#----------------------------------------------------------------------
+# Тестовый класс Model Serialiser, для сериализации данных из таблиц БД
 class Carsserialiser(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ('name',)
+#----------------------------------------------------------------------
+
+#------------------------------------
+# Сериализуем dataset из mydataset
+# Определяем класс и его атрибуты
+class dataclass:
+    def __init__(self, id, data):
+        self.id = id
+        self.data = data
+#
+# Определяем класс для сериализации (атрибуты должны соответствовать как в dataclass)
+class serializerDataclass(serializers.Serializer):
+    # Задаем тип атрибутов
+    id = serializers.CharField()
+    data = serializers.CharField()
+#
+# Ф-ция для преобразования объектов класса dataclass в JSON
+def encodeDataclass(id, data ):
+    # Экземпляр класса dataclass
+    modelData = dataclass(id, data)
+    #print(modelData)
+    # Передаем наш экземпляр в класс сериализации
+    modelData_sr = serializerDataclass(modelData)
+    #print(modelData_sr)
+    # Преобразуем полученный объект в JSON
+    json = JSONRenderer().render(modelData_sr.data)
+    #print('*', json)
+    return json
