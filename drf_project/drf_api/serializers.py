@@ -3,6 +3,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from datetime import datetime
 from .models import Brand
+from .mydataset import main
 # ---------------------------------------- #
 
 # Определяем класс и его атрибуты
@@ -61,27 +62,9 @@ class Carsserialiser(serializers.ModelSerializer):
 
 #------------------------------------
 # Сериализуем dataset из mydataset
-# Определяем класс и его атрибуты
-class dataclass:
-    def __init__(self, id, data):
-        self.id = id
-        self.data = data
 #
-# Определяем класс для сериализации (атрибуты должны соответствовать как в dataclass)
-class serializerDataclass(serializers.Serializer):
-    # Задаем тип атрибутов
-    id = serializers.CharField()
-    data = serializers.CharField()
-#
-# Ф-ция для преобразования объектов класса dataclass в JSON
-def encodeDataclass(id, data ):
-    # Экземпляр класса dataclass
-    modelData = dataclass(id, data)
-    #print(modelData)
-    # Передаем наш экземпляр в класс сериализации
-    modelData_sr = serializerDataclass(modelData)
-    #print(modelData_sr)
+def encodeDataset():
     # Преобразуем полученный объект в JSON
-    json = JSONRenderer().render(modelData_sr.data)
-    #print('*', json)
+    json = JSONRenderer().render(main.dataset1())
+    #
     return json

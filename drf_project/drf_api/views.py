@@ -1,4 +1,6 @@
+import json
 import random
+from rest_framework.views import APIView
 from rest_framework import generics
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -6,8 +8,7 @@ from .serializers import encodeTest
 from .serializers import encodeTest2
 from .serializers import Carsserialiser
 from .models import Brand
-from .serializers import encodeDataclass
-from .mydataset import main
+from .serializers import encodeDataset
 # Create your views here.
 
 #
@@ -30,6 +31,4 @@ class CarsAPIView(generics.ListAPIView):
 #
 def datasetAPI(request):
     if (request.method == 'GET'):
-        for key, value in main.dataset1().items():
-            #print(value)
-            return HttpResponse(encodeDataclass(key, value), content_type='application/json')
+        return HttpResponse(encodeDataset(), content_type='application/json')

@@ -20,11 +20,9 @@ def dataset1():
             dictresult[value[0].strip()].append(value[1])
         else:
             dictresult[value[0].strip()].append(value[1])
-    #print(dictresult)
     return dictresult
 
 #
-
 if __name__ == '__main__':
     pass
     #dataset1()
